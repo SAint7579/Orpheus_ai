@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="player_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="/" id="navbar__logo"> <img src="images/orph.png" alt="" id="orph__logo">   Orpheus.ai</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="index.html" class="navbar__links">
+                    Home
+                    </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="generate.html" class="navbar__links">
+                    Start Generating
+                    </a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="/" class="button">
+                    Sign up
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Play button-->
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <p>Generated song <br> <h1>01</h1></p>
+            </div>
+                <div class="play__button">
+                    <img src="images/play.png" alt="" id="play">
+                </div>
+            
+        </div>
+    </div>
+
+    <audio src="nvg.mp3" id="song">
+
+    </audio>
+    
+    <script>
+        var mySong=document.getElementById("song");
+        var icon= document.getElementById("play");
+
+        icon.onclick= function(){
+            if(mySong.paused){
+                mySong.play();
+                icon.src="images/pause.png";
+            }else{
+                mySong.pause();
+                icon.src="images/play.png";
+            }
+        }
+    </script>
+
+
+
+
+
+
+</body>
+</html>
