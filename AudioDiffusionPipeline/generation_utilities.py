@@ -11,7 +11,7 @@ audio_diffusion = AudioDiffusionPipeline.from_pretrained("teticio/latent-audio-d
 ddim = AudioDiffusionPipeline.from_pretrained("teticio/audio-diffusion-ddim-256").to(device)
 
 ### Add numpy docstring to generate_from_music
-def generate_from_music(song_array, diffuser, start_step, total_steps=100, device="cuda"):
+def generate_from_music(song_array, diffuser, start_step, total_steps=100, device=device):
     """
     Generates audio from a given song array using a given diffuser.
     Parameters
@@ -63,7 +63,7 @@ def iterative_slerp(song_arrays, ddim, steps=10):
 
     return slerp
 
-def merge_songs(song_arrays, ddim, slerp_steps=10, diffusion_steps=100, device="cuda"):
+def merge_songs(song_arrays, ddim, slerp_steps=10, diffusion_steps=100, device=device):
     """Merge songs.
 
     Parameters
