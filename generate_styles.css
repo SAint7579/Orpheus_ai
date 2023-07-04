@@ -7,17 +7,17 @@
 }
   
 .navbar {
-    background: rgb(113, 113, 138);
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    position: sticky;
-    top: 0;
-    z-index: 999;
+background: black;
+height: 80px;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 1.2rem;
+position: sticky;
+top: 0;
+z-index: 999;
 }
-  
+
 .navbar__container {
 display: flex;
 justify-content: space-between;
@@ -44,12 +44,13 @@ align-items: center;
 cursor: pointer;
 text-decoration: none;
 font-size: 2rem;
-font-family: 'Encode Sans', sans-serif;;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+font-weight: bold;
 }
 
 #orph__logo{
-height: 80%;
-width: 80%;
+height: 90%;
+width: 90%;
 margin-right: 0.5rem;
 }
 
@@ -65,7 +66,7 @@ text-align: center;
 }
 
 .navbar__item {
-height: 80px;
+height: 70px;
 }
 
 .navbar__links {
@@ -76,6 +77,7 @@ justify-content: center;
 text-decoration: none;
 padding: 0 1rem;
 height: 100%;
+font-weight: bold;
 }
 
 .navbar__btn {
@@ -84,6 +86,8 @@ justify-content: center;
 align-items: center;
 padding: 0 1rem;
 width: 100%;
+
+
 }
 
 .button {
@@ -96,9 +100,12 @@ height: 100%;
 width: 100%;
 border: none;
 outline: none;
-border-radius: 4px;
+border-radius: 20px;
 background: #f77062;
 color: #fff;
+font-weight: bold;
+
+
 }
 
 .button:hover {
@@ -110,7 +117,6 @@ transition: all 0.3s ease;
 color: #f77062;
 transition: all 0.3s ease;
 }
-
 @media screen and (max-width: 960px) {
     .navbar__container {
         display: flex;
@@ -212,9 +218,14 @@ transition: all 0.3s ease;
     background-color: black;
 }
 
-.main__container1{
+.main__card{
     display: grid;
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr 1fr;
+}
+
+.main__container1{
+    /* display: grid;
+    grid-template-columns: 1fr ; */
     align-items: left;
     justify-self: left;
     margin: 0 auto;
@@ -228,16 +239,17 @@ transition: all 0.3s ease;
 
 .main__content1 h1{
     font-size: 2rem;
-    background-color: red;
+    color: red;
+    /* background-color: red;
     background-image: linear-gradient(to top,red 0%,orange 100%);
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
     -webkit-text-fill-color:transparent;
-    -moz-text-fill-color: transparent;
+    -moz-text-fill-color: transparent; */
     text-align: center;
     padding-top: 40px;
-    padding-bottom: 0px;
+    padding-bottom: 0px; 
 }
 
 .main__container2{
