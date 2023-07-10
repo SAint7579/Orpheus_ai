@@ -4,6 +4,7 @@ from audiodiffusion import AudioDiffusion, AudioDiffusionPipeline
 from audiodiffusion.audio_encoder import AudioEncoder
 import librosa
 import librosa.display
+import numpy as np
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -35,6 +36,46 @@ def generate_from_music(song_array, diffuser, start_step, total_steps=100, devic
     generator.seed()
     output = diffuser(raw_audio=song_array, generator = generator, start_step=start_step, steps=total_steps)
     return output.images[0], output.audios[0, 0]
+
+def generate_from_music_long(song_array, diffuser, start_step, total_steps=100, device="cuda"):
+    """
+    Generates a 10 second audio from a given song array using a given diffuser.
+    Parameters
+    ----------
+    song_array : numpy.ndarray
+        The song array to use as the raw audio.
+    diffuser : AudioDiffusionPipeline
+        The diffuser to use to generate the audio.
+    start_step : int
+        The step to start generating from.
+    total_steps : int
+        The total number of steps to generate.
+    device : str
+        The device to use for generation.
+    Returns
+    -------
+    numpy.ndarray
+        The generated audio.
+    """
+    generator = torch.Generator(device=device)
+    generator.seed()
+    output = diffuser(raw_audio=song_array, generator = generator, start_step=start_step, steps=total_steps)
+
+    # Get the track and use the diffuser again to create the continuation
+    track = output.audios[0, 0]
+    sample_rate = diffuser.mel.get_sample_rate()
+    overlap_secs = 2
+    overlap_samples = overlap_secs * sample_rate
+
+    continue_output = diffuser(raw_audio=track[-overlap_samples:],
+                             start_step=start_step,
+                             mask_start_secs=overlap_secs)
+    # image2 = output.images[0]
+    audio2 = continue_output.audios[0, 0]
+    track = np.concatenate([track, audio2[overlap_samples:]])
+
+    return output.images[0], track
+
 
 ## Add docstring to iterative_slerp function in numpy format
 def iterative_slerp(song_arrays, ddim, steps=10):
@@ -115,7 +156,7 @@ def generate_songs(conditioning_songs, similarity=0.5, quality=500, merging_qual
 
     print("Generating song...")
     start_step = int(quality*similarity)
-    spec_generated, generated = generate_from_music(merged, audio_diffusion, start_step=start_step, total_steps=quality, device=device)
+    spec_generated, generated = generate_from_music_long(merged, audio_diffusion, start_step=start_step, total_steps=quality, device=device)
 
     return spec_generated, generated
 
