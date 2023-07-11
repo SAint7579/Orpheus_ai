@@ -222,24 +222,6 @@ transition: all 0.3s ease;
 
 }
 
-.custom{
-    position: relative;
-    font-family: Arial;
-    font-size: 14px;
-    background: transparent;
-    color: white;
-    padding: 12px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    appearance: none;
-    outline: none;
-    cursor: pointer;
-}
-.custom option{
-    color: white;
-}
-
 #form{
     background-color: rgb(30, 37, 49);
     width: 300px;
