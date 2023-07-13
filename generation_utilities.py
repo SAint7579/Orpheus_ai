@@ -68,8 +68,9 @@ def generate_from_music_long(song_array, diffuser, start_step, total_steps=100, 
     overlap_samples = overlap_secs * sample_rate
 
     continue_output = diffuser(raw_audio=track[-overlap_samples:],
-                             start_step=start_step,
-                             mask_start_secs=overlap_secs)
+                               generator=generator,
+                               start_step=start_step,
+                               mask_start_secs=overlap_secs)
     # image2 = output.images[0]
     audio2 = continue_output.audios[0, 0]
     track = np.concatenate([track, audio2[overlap_samples:]])
@@ -154,9 +155,17 @@ def generate_songs(conditioning_songs, similarity=0.5, quality=500, merging_qual
     else:
         merged = conditioning_songs[0]
 
+    ## Take a random 10 second slice from the merged song
+    sample_rate = ddim.mel.get_sample_rate()
+    start = np.random.randint(0, len(merged) - 5 * sample_rate)
+    merged = merged[start:start + 5 * sample_rate]
+
+
     print("Generating song...")
-    start_step = int(quality*similarity)
-    spec_generated, generated = generate_from_music_long(merged, audio_diffusion, start_step=start_step, total_steps=quality, device=device)
+    ## quality = X - similarity*X
+    total_steps = min([1000, int(quality/(1-similarity))])
+    start_step = int(total_steps*similarity)
+    spec_generated, generated = generate_from_music(merged, audio_diffusion, start_step=start_step, total_steps=total_steps, device=device)
 
     return spec_generated, generated
 
