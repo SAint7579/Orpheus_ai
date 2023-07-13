@@ -352,3 +352,30 @@ input{
 .main__btn:hover:after {
     width: 100%;
 } 
+
+.slider_container{
+    padding: 30px;
+    background-color: #3f3981;
+    width: 80%;
+    border-radius: 11px;
+    text-align: left;
+    position: relative;
+}
+  
+#sliderValue {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    color:white;
+
+    background-color: transparent;
+    justify-content: space-around;
+
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    position: absolute;
+    top:40%;
+    left: 50%;
+  }
+  
