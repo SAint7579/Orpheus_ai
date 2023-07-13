@@ -14,7 +14,7 @@ const client = new Client({
   user: 'postgres',
   host: 'localhost',
   database: 'orpheus',
-  password: '1234',
+  password: '12345',
   port: 5432,
 });
 
