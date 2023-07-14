@@ -34,7 +34,13 @@ client.connect()
 app.get('/trigger-python', (req, res) => {
   // Run the Python script using child_process.spawn
   // const pythonScript = spawn('python', ['C:/VS code projects/Orpheus-2/change_song.py']);
-  const pythonScript = spawn('python', ['change_song.py']);
+
+  const param1 = req.query.param1;
+  const param2 = req.query.param2;
+  const param3 = req.query.param3;
+  const param4 = req.query.param4;
+
+  const pythonScript = spawn('python', ['change_song.py',param1 ,param2, param3, param4]);
   pythonScript.stdout.on('data', (data) => {
     console.log(`Python script output: ${data}`);});
 

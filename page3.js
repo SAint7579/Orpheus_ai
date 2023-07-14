@@ -55,13 +55,27 @@ function rate(starIndex) {
       
 }
 
+// store the name of all the songs selected and pass it to the python script for generating music
+
+const song1_name=localStorage.getItem('song1');
+const song2_name=localStorage.getItem('song2');
+const song3_name=localStorage.getItem('song3');
+const similarity=localStorage.getItem('slidervalue');
+
 function changeSong(){
     if (mySong.paused){}
     else{
         mySong.pause();
         icon.src="images/play.png";
     }
-    fetch('http://localhost:3000/trigger-python')
+
+    const params = new URLSearchParams();
+    params.append('param1', song1_name);
+    params.append('param2', song2_name);
+    params.append('param3', song3_name);
+    params.append('param4', similarity);
+
+    fetch(`http://localhost:3000/trigger-python?${params.toString()}`)
         .then(response => response.text())
         .then(data => console.log(data))
         .catch(error => console.error(error));
@@ -152,3 +166,13 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.send(JSON.stringify(data));
     });
 });
+
+// playing
+var pp=document.getElementById("pp");
+function idk(){
+  const song1=localStorage.getItem('slidervalue');
+  pp.textContent=song1;
+}
+ 
+
+
