@@ -151,6 +151,9 @@ def generate_songs(conditioning_songs, similarity=0.5, quality=500, merging_qual
     ## Merging songs
     print("Merging songs...")
     if len(conditioning_songs)>1:
+        print(conditioning_songs)
+        for c in conditioning_songs:
+            print(c.shape)
         spec_merged, merged = merge_songs(conditioning_songs, ddim, slerp_steps=merging_quality, diffusion_steps=merging_quality, device=device)
     else:
         merged = conditioning_songs[0]
