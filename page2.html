@@ -68,27 +68,66 @@
                 <div class="search_container">
                     <form role="search" id="form">
                         <input type="search" id="query" name="q" placeholder="Search...">
-                    </form>
+
+                        
+                    </form> -->
+                    <select class="custom" id="dropdown1" onchange="updateHeading(1)">
+                        <option >Song List 1</option>
+                        <option value="Anti-Hero">Anti-Hero</option>
+                        <option value="Blank-Space">Blank-Space</option>
+                        <option value="Delicate">Delicate</option>
+                        <option value="Love-Story">Love-Story</option>
+                        <option value="Willow">Willow</option>
+                        <option value="22">22</option>
+                      </select>
+                      <select class="custom" id="dropdown2" onchange="updateHeading(2)">
+                        <option >Song List 2 </option>
+                        <option value="Anti-Hero">Anti-Hero</option>
+                        <option value="Blank-Space">Blank-Space</option>
+                        <option value="Delicate">Delicate</option>
+                        <option value="Love-Story">Love-Story</option>
+                        <option value="Willow">Willow</option>
+                        <option value="22">22</option>
+                      </select>
+                      <select class="custom" id="dropdown3" onchange="updateHeading(3)">
+                        <option >Song List 3</option>
+                        <option value="Anti-Hero">Anti-Hero</option>
+                        <option value="Blank-Space">Blank-Space</option>
+                        <option value="Delicate">Delicate</option>
+                        <option value="Love-Story">Love-Story</option>
+                        <option value="Willow">Willow</option>
+                        <option value="22">22</option>
+                      </select>
+                    
+                    
                 </div>
                 <br>
                 <div class="card">
-                    <img src="images/song1.jfif" class="thumbnail" >
-                    <h3 class="song_name">Memories</h3>
+                    <img src="images/22.jpg" class="thumbnail" id="thumbnail_song1" >
+                    <h3 class="song_name" id="heading1">select</h3>
                 </div>
                 <br>
                 <div class="card">
-                    <img src="images/fl.jfif" class="thumbnail" >
-                    <h3 class="song_name">Sign</h3>
+                    <img src="images/Willow.jfif" class="thumbnail" id="thumbnail_song2">
+                    <h3 class="song_name" id="heading2">select</h3>
                 </div>
                 <br>
                 <div class="card">
-                    <img src="images/ty.png" class="thumbnail" >
-                    <h3 class="song_name">AntiHero</h3>
+                    <img src="images/ai.jpg" class="thumbnail" id="thumbnail_song3">
+                    <h3 class="song_name" id="heading3">select</h3>
+                </div>
+                <br>
+                <div class="slider_container">
+                    <input type="range" id="slider" min="1" max="100" step="1" value="90">
+                    <p id="sliderValue">90</p>
+
                 </div>
                 <br>
                 <div class="main__btn__container">
                     <button class="main__btn"><a href="page3.html">Generate</a></button>
                 </div>
+
+                
             </div>
         </div>
 
