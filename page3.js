@@ -1,18 +1,7 @@
-// const { time } = require("@amcharts/amcharts5");
-
-
 var mySong=document.getElementById("song");
 var icon= document.getElementById("play");
 var star1=document.getElementById("star1");
-// var star2=document.getElementById("star2");
-// var star3=document.getElementById("star3");
-// var star4=document.getElementById("star4");
-// var star5=document.getElementById("star5");
-
-
-
 var next=document.getElementById("next");
-
 var thumbnail=document.getElementById("song_thumbnail");
 
 icon.onclick= playpause;
@@ -47,6 +36,9 @@ function playpause(){
         play_time = endTime - startTime;
         play_time=play_time/1000
     }
+    mySong.addEventListener("ended", function() {
+      icon.src = "images/play.png";
+    });
 }
 
 
@@ -66,40 +58,51 @@ function rate(starIndex) {
       
 }
 
-function changeSong(){
-    if (mySong.paused){}
-    else{
-        mySong.pause();
-        icon.src="images/play.png";
-    }
-    fetch('http://localhost:3000/trigger-python')
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
+// store the name of all the songs selected and pass it to the python script for generating music
 
-    // thumbnail.src="images/ai.jfif";
-    thumbnail.src="audio/thumbnail.png";
-    location.reload(true);
+const song1_name=localStorage.getItem('song1');
+const song2_name=localStorage.getItem('song2');
+const song3_name=localStorage.getItem('song3');
+const similarity=localStorage.getItem('slidervalue');
+
+function changeSong(){
+  thumbnail.src="images/loading.gif";
+
+  if (mySong.paused){}
+  else{
+      mySong.pause();
+      icon.src="images/play.png";
+  }
+ 
+  const params = new URLSearchParams();
+  params.append('param1', song1_name);
+  params.append('param2', song2_name);
+  params.append('param3', song3_name);
+  params.append('param4', similarity);
+
+  
+
+  fetch(`http://localhost:3000/trigger-python?${params.toString()}`)
+      .then(response => response.text())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+
+  // location.reload(true);
     
 }
+
+
+
 // Generate a random integer between min (inclusive) and max (inclusive)
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+}
   
 // Usage example: Generate a random integer between 1 and 10
 var randomNum = getRandomInt(1, 10);
-
-// async function loadImageFromPath(path) {
-//     const response = await fetch(path);
-//     const arrayBuffer = await response.arrayBuffer();
-//     const bytes = new Uint8Array(arrayBuffer);
-//     const bytea = bytes.reduce((acc, byte) => acc + '\\' + byte.toString(8), '');
-//     return bytea;
-// }  
 
 
 function loadImageFromPath(imagePath) {
@@ -135,17 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var value2 = rating_number;
         var value3 = play_time;  // Replace with your desired value
         const imagePath = 'audio/thumbnail.png'; // Replace with the actual file path
-        var convertedBytea;
-        loadImageFromPath(imagePath)
-        .then(bytea => {
-            convertedBytea = bytea;
-            // Here, you can access and use the convertedBytea variable as needed
-            console.log(convertedBytea);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-        console.log(convertedBytea); // Replace with the path to your .png file
+        var value4 = loadImageFromPath(imagePath).then(byteaData => useByteaData(byteaData));
         
         
         
@@ -177,8 +170,17 @@ document.addEventListener("DOMContentLoaded", function() {
             value1: value1,
             value2: value2,
             value3: value3,
-            value4: convertedBytea
+            value4: value4
         };
         xhr.send(JSON.stringify(data));
     });
 });
+
+// playing
+var pp=document.getElementById("pp");
+function idk(){
+  const song1=localStorage.getItem('slidervalue');
+  pp.textContent=song1;
+}
+ 
+
