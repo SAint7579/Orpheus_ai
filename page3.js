@@ -1,7 +1,18 @@
+// const { time } = require("@amcharts/amcharts5");
+
+
 var mySong=document.getElementById("song");
 var icon= document.getElementById("play");
 var star1=document.getElementById("star1");
+// var star2=document.getElementById("star2");
+// var star3=document.getElementById("star3");
+// var star4=document.getElementById("star4");
+// var star5=document.getElementById("star5");
+
+
+
 var next=document.getElementById("next");
+
 var thumbnail=document.getElementById("song_thumbnail");
 
 icon.onclick= playpause;
@@ -102,7 +113,15 @@ function getRandomInt(min, max) {
 }
   
 // Usage example: Generate a random integer between 1 and 10
-var randomNum = getRandomInt(1, 10); 
+var randomNum = getRandomInt(1, 10);
+
+// async function loadImageFromPath(path) {
+//     const response = await fetch(path);
+//     const arrayBuffer = await response.arrayBuffer();
+//     const bytes = new Uint8Array(arrayBuffer);
+//     const bytea = bytes.reduce((acc, byte) => acc + '\\' + byte.toString(8), '');
+//     return bytea;
+// }  
 
 
 function loadImageFromPath(imagePath) {
@@ -138,7 +157,17 @@ document.addEventListener("DOMContentLoaded", function() {
         var value2 = rating_number;
         var value3 = play_time;  // Replace with your desired value
         const imagePath = 'audio/thumbnail.png'; // Replace with the actual file path
-        var value4 = loadImageFromPath(imagePath).then(byteaData => useByteaData(byteaData));
+        var convertedBytea;
+        loadImageFromPath(imagePath)
+        .then(bytea => {
+            convertedBytea = bytea;
+            // Here, you can access and use the convertedBytea variable as needed
+            console.log(convertedBytea);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+        console.log(convertedBytea); // Replace with the path to your .png file
         
         
         
@@ -170,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
             value1: value1,
             value2: value2,
             value3: value3,
-            value4: value4
+            value4: convertedBytea
         };
         xhr.send(JSON.stringify(data));
     });

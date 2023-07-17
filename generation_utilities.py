@@ -158,10 +158,10 @@ def generate_songs(conditioning_songs, similarity=0.9, quality=500, merging_qual
     else:
         merged = conditioning_songs[0]
 
-    # ## Take a random 10 second slice from the merged song
-    # sample_rate = ddim.mel.get_sample_rate()
-    # start = np.random.randint(0, len(merged) - 5 * sample_rate)
-    # merged = merged[start:start + 5 * sample_rate]
+    ## Take a random 10 second slice from the merged song
+    sample_rate = ddim.mel.get_sample_rate()
+    start = np.random.randint(0, len(merged) - 5 * sample_rate)
+    merged = merged[start:start + 5 * sample_rate]
 
 
     print("Generating song...")
