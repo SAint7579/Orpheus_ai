@@ -36,6 +36,9 @@ function playpause(){
         play_time = endTime - startTime;
         play_time=play_time/1000
     }
+    mySong.addEventListener("ended", function() {
+      icon.src = "images/play.png";
+    });
 }
 
 
@@ -63,34 +66,40 @@ const song3_name=localStorage.getItem('song3');
 const similarity=localStorage.getItem('slidervalue');
 
 function changeSong(){
-    if (mySong.paused){}
-    else{
-        mySong.pause();
-        icon.src="images/play.png";
-    }
+  thumbnail.src="images/loading.gif";
 
-    const params = new URLSearchParams();
-    params.append('param1', song1_name);
-    params.append('param2', song2_name);
-    params.append('param3', song3_name);
-    params.append('param4', similarity);
+  if (mySong.paused){}
+  else{
+      mySong.pause();
+      icon.src="images/play.png";
+  }
+ 
+  const params = new URLSearchParams();
+  params.append('param1', song1_name);
+  params.append('param2', song2_name);
+  params.append('param3', song3_name);
+  params.append('param4', similarity);
 
-    fetch(`http://localhost:3000/trigger-python?${params.toString()}`)
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
+  
 
-    thumbnail.src="audio/thumbnail.png";
-    location.reload(true);
+  fetch(`http://localhost:3000/trigger-python?${params.toString()}`)
+      .then(response => response.text())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+
+  // location.reload(true);
     
 }
+
+
+
 // Generate a random integer between min (inclusive) and max (inclusive)
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+}
   
 // Usage example: Generate a random integer between 1 and 10
 var randomNum = getRandomInt(1, 10); 
@@ -174,5 +183,4 @@ function idk(){
   pp.textContent=song1;
 }
  
-
 

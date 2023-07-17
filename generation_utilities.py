@@ -129,7 +129,7 @@ def merge_songs(song_arrays, ddim, slerp_steps=10, diffusion_steps=100, device="
     return merged.images[0], merged.audios[0, 0]
 
 ## Write generate songs function with numpy docstring
-def generate_songs(conditioning_songs, similarity=0.5, quality=500, merging_quality=100, device='cuda'):
+def generate_songs(conditioning_songs, similarity=0.9, quality=500, merging_quality=100, device='cuda'):
     """Generate songs.
 
     Parameters
@@ -151,6 +151,9 @@ def generate_songs(conditioning_songs, similarity=0.5, quality=500, merging_qual
     ## Merging songs
     print("Merging songs...")
     if len(conditioning_songs)>1:
+        print(conditioning_songs)
+        for c in conditioning_songs:
+            print(len(c))
         spec_merged, merged = merge_songs(conditioning_songs, ddim, slerp_steps=merging_quality, diffusion_steps=merging_quality, device=device)
     else:
         merged = conditioning_songs[0]

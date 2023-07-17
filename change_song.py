@@ -213,6 +213,7 @@ def main():
     song2_name=sys.argv[2]
     song3_name=sys.argv[3]
     similarity_index=float(sys.argv[4])/100
+    print("Similarity index is",similarity_index)
     print("Song1 name is",song1_name)
     print("Song2 name is",song2_name)
     print("Song3 name is",song3_name)
@@ -223,17 +224,18 @@ def main():
     # song_array_1, sr = librosa.load("audio\output.mp3", sr=22050)
     # song_array_1 = song_array_1[:sr*5]
     
-    song_array_1, sr = librosa.load(f"taylor_swift/{song1_name}.mp3", sr=22050)
-    song_array_1 = song_array_1[:sr*5]
+    song_array_1, sr = librosa.load(f"input_songs/{song1_name}.mp3", sr=22050)
     
-    song_array_2, sr = librosa.load(f"taylor_swift/{song2_name}.mp3", sr=22050)
-    song_array_2 = song_array_2[:sr*5]
+    # song_array_1 = song_array_1[:sr*5]
     
-    song_array_3, sr = librosa.load(f"taylor_swift/{song3_name}.mp3", sr=22050)
-    song_array_3 = song_array_3[:sr*5]
+    song_array_2, sr = librosa.load(f"input_songs/{song2_name}.mp3", sr=22050)
+    # song_array_2 = song_array_2[:sr*5]
+    
+    song_array_3, sr = librosa.load(f"input_songs/{song3_name}.mp3", sr=22050)
+    # song_array_3 = song_array_3[:sr*5]
     
     mage, audio = generate_songs([song_array_1], similarity=similarity_index, quality=200)
-    mage.save("C:/VS code projects/Orpheus-2/audio/thumbnail.png")
+    mage.save("audio/thumbnail.png")
     audioarray_to_mp3(audio,"audio/generated_song.mp3")
     # if i==3:
     #     shutil.copy2("aidio/nvg.mp3", "audio/generated_song.mp3")
