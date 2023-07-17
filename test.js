@@ -14,7 +14,7 @@ const client = new Client({
   user: 'postgres',
   host: 'localhost',
   database: 'orpheus',
-  password: '12345',
+  password: '1234',
   port: 5432,
 });
 
@@ -53,24 +53,6 @@ app.get('/trigger-python', (req, res) => {
 });
 
 
-
-// // Define the route for inserting data
-// app.post('/insert', (req, res) => {
-//   const { value1, value2, value3, value4 } = req.body;
-
-//   // Prepare the SQL statement
-//   const sql = 'INSERT INTO music (encoding, ratings,time_listened,songs) VALUES ($1, $2, $3, $4)';
-
-//   // Execute the SQL statement
-//   client.query(sql, [value1, value2,value3, value4])
-//     .then(() => {
-//       res.send('Data inserted successfully.');
-//     })
-//     .catch((error) => {
-//       res.status(500).send('Error inserting data: ' + error.message);
-//     });
-// });
-
 app.post('/insert', (req, res) => {
   const { value1, value2, value3, value4 } = req.body;
 
@@ -78,11 +60,11 @@ app.post('/insert', (req, res) => {
   const sql = 'INSERT INTO music (encoding, ratings, time_listened, songs) VALUES ($1, $2, $3, $4)';
 
   let byteaValue4;
-  if (value4 !== undefined) {
-    // Convert value4 to bytea representation
-    byteaValue4 = Buffer.from(value4).toString('hex');
-    console.log(byteaValue4);
-  }
+  // if (value4 !== undefined) {
+  //   // Convert value4 to bytea representation
+  //   byteaValue4 = Buffer.from(value4).toString('hex');
+  //   console.log(byteaValue4);
+  // }
 
   // Execute the SQL statement with parameters
   client.query(sql, [value1, value2, value3, value4])
