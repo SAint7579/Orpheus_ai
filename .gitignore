@@ -3,3 +3,6 @@ DataSet/
 .ipynb_checkpoints
 **/Data Processing/.ipynb_checkpoints
 node_modules/
+Retraining Pipeline/models
+Retraining Pipeline/audio-diffusion
+Enhancement/

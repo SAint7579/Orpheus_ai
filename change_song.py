@@ -21,6 +21,8 @@ from audiodiffusion.audio_encoder import AudioEncoder
 import librosa
 import librosa.display
 
+import IPython.display as ipd
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # audio_diffusion = AudioDiffusionPipeline.from_pretrained("teticio/latent-audio-diffusion-256").to(device)
@@ -186,6 +188,20 @@ def audioarray_to_mp3(audioarray, file_path):
     sf.write(output_mp3_file, wav_data, sample_rate, format="MP3")
     
     return None
+
+def audioarray_to_mp3_highdb(audioarray, file_path):
+    sample_rate = 22050
+    # Save the audio array as a temporary WAV file
+    temp_wav_file = "temp.wav"
+
+    audio = ipd.Audio(audioarray, rate=sample_rate)
+
+    ## Write file into a wav file with open
+    with open(file_path, 'wb') as f:
+        f.write(audio.data)
+        
+    return None
+
 
 def main():
     # # Connect to the PostgreSQL database
