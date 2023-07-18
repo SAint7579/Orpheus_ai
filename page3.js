@@ -113,7 +113,7 @@ function getRandomInt(min, max) {
 }
   
 // Usage example: Generate a random integer between 1 and 10
-var randomNum = getRandomInt(1, 10000);
+var randomNum = getRandomInt(1, 100000);
 
 
 function loadImageFromPath(imagePath) {
