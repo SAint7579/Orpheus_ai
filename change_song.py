@@ -253,7 +253,7 @@ def main():
     
     mage, audio = generate_songs([song_array_1], similarity=similarity_index, quality=200)
     mage.save("audio/thumbnail.png")
-    audioarray_to_mp3(audio,"audio/generated_song.mp3")
+    audioarray_to_mp3_highdb(audio,"audio/generated_song.mp3")
     # if i==3:
     #     shutil.copy2("aidio/nvg.mp3", "audio/generated_song.mp3")
     
