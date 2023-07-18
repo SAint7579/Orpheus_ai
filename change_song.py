@@ -7,7 +7,7 @@ from scipy.io import wavfile
 import soundfile as sf
 import os
 warnings.filterwarnings("ignore")
-
+import sys
 from generation_utilities import *
 
 import numpy as np  # noqa: E402
@@ -203,36 +203,55 @@ def audioarray_to_mp3_highdb(audioarray, file_path):
 
 
 def main():
-    # Connect to the PostgreSQL database
-    conn = psycopg2.connect(database="orpheus", user="postgres", password="1234", host="localhost", port="5432")
-    cur = conn.cursor()
+    # # Connect to the PostgreSQL database
+    # conn = psycopg2.connect(database="orpheus", user="postgres", password="1234", host="localhost", port="5432")
+    # cur = conn.cursor()
 
-    # Assuming you have a table named 'images' with columns 'id' (serial primary key) and 'image_data' (bytea)
-    table_name = "songs"
+    # # Assuming you have a table named 'images' with columns 'id' (serial primary key) and 'image_data' (bytea)
+    # table_name = "songs"
     
-    image_id = np.random.randint(1, 10)  # Replace with the actual ID of the image you want to retrieve
-    print(image_id)
-    # Retrieve the image data from the database
-    cur.execute(f"SELECT song FROM {table_name} WHERE id = %s", (image_id,))
-    result = cur.fetchone()
+    # image_id = np.random.randint(1, 10)  # Replace with the actual ID of the image you want to retrieve
+    # print(image_id)
+    # # Retrieve the image data from the database
+    # cur.execute(f"SELECT song FROM {table_name} WHERE id = %s", (image_id,))
+    # result = cur.fetchone()
 
-    # Convert the bytea data to PIL.Image.Image object
-    image_bytes = BytesIO(result[0])
-    image = Image.open(image_bytes)
-    # image.save("C:/VS code projects/Orpheus-2/audio/thumbnail.png")
-    # Close the database connection
-    cur.close()
-    conn.close()
+    # # Convert the bytea data to PIL.Image.Image object
+    # image_bytes = BytesIO(result[0])
+    # image = Image.open(image_bytes)
+    # # image.save("C:/VS code projects/Orpheus-2/audio/thumbnail.png")
+    # # Close the database connection
+    # cur.close()
+    # conn.close()
     
-    # i=0
-    # i=i+1
+    # getting the song names
+    song1_name=sys.argv[1]
+    song2_name=sys.argv[2]
+    song3_name=sys.argv[3]
+    similarity_index=float(sys.argv[4])/100
+    print("Similarity index is",similarity_index)
+    print("Song1 name is",song1_name)
+    print("Song2 name is",song2_name)
+    print("Song3 name is",song3_name)
+    print("Similarity index is",similarity_index)
+    #
     mel = Mel()
-    audioarray_to_mp3(mel.image_to_audio(image), "audio/output.mp3")
+    # audioarray_to_mp3(mel.image_to_audio(image), "audio/output.mp3")
+    # song_array_1, sr = librosa.load("audio\output.mp3", sr=22050)
+    # song_array_1 = song_array_1[:sr*5]
     
-    song_array_1, sr = librosa.load("audio\output.mp3", sr=22050)
-    song_array_1 = song_array_1[:sr*5]
-    mage, audio = generate_songs([song_array_1], similarity=0.5, quality=200)
-    mage.save("C:/VS code projects/Orpheus-2/audio/thumbnail.png")
+    song_array_1, sr = librosa.load(f"input_songs/{song1_name}.mp3", sr=22050)
+    
+    # song_array_1 = song_array_1[:sr*5]
+    
+    song_array_2, sr = librosa.load(f"input_songs/{song2_name}.mp3", sr=22050)
+    # song_array_2 = song_array_2[:sr*5]
+    
+    song_array_3, sr = librosa.load(f"input_songs/{song3_name}.mp3", sr=22050)
+    # song_array_3 = song_array_3[:sr*5]
+    
+    mage, audio = generate_songs([song_array_1], similarity=similarity_index, quality=200)
+    mage.save("audio/thumbnail.png")
     audioarray_to_mp3(audio,"audio/generated_song.mp3")
     # if i==3:
     #     shutil.copy2("aidio/nvg.mp3", "audio/generated_song.mp3")
