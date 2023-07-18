@@ -25,7 +25,8 @@ import IPython.display as ipd
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-audio_diffusion = AudioDiffusionPipeline.from_pretrained("teticio/latent-audio-diffusion-256").to(device)
+# audio_diffusion = AudioDiffusionPipeline.from_pretrained("teticio/latent-audio-diffusion-256").to(device)
+audio_diffusion = AudioDiffusionPipeline.from_pretrained("SAint7579/orpheus_ldm_model_v1-0").to(device)
 ddim = AudioDiffusionPipeline.from_pretrained("teticio/audio-diffusion-ddim-256").to(device)
 
 
@@ -252,7 +253,7 @@ def main():
     
     mage, audio = generate_songs([song_array_1], similarity=similarity_index, quality=200)
     mage.save("audio/thumbnail.png")
-    audioarray_to_mp3(audio,"audio/generated_song.mp3")
+    audioarray_to_mp3_highdb(audio,"audio/generated_song.mp3")
     # if i==3:
     #     shutil.copy2("aidio/nvg.mp3", "audio/generated_song.mp3")
     

@@ -29,3 +29,8 @@ slider.addEventListener('input', function() {
   localStorage.setItem("slidervalue", slider.value);
 });
 
+var generateButton = document.getElementById("generate");
+
+function changingSong(){
+  localStorage.setItem("loadingSong", "firstsong");
+}
