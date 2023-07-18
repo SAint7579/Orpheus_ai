@@ -23,7 +23,8 @@ import librosa.display
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-audio_diffusion = AudioDiffusionPipeline.from_pretrained("teticio/latent-audio-diffusion-256").to(device)
+# audio_diffusion = AudioDiffusionPipeline.from_pretrained("teticio/latent-audio-diffusion-256").to(device)
+audio_diffusion = AudioDiffusionPipeline.from_pretrained("SAint7579/orpheus_ldm_model_v1-0").to(device)
 ddim = AudioDiffusionPipeline.from_pretrained("teticio/audio-diffusion-ddim-256").to(device)
 
 

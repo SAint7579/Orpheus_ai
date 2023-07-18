@@ -267,5 +267,31 @@
     color:white;
 }
 
+.popup {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: green;
+    padding-left: 80px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(101, 239, 8, 0.607);
+    opacity: 0;
+    animation: showPopup 0.3s ease-in-out forwards;
+    color: white;
+    display: none;
+}
   
+@keyframes showPopup {
+    0% { 
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+}
   

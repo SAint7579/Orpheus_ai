@@ -377,5 +377,8 @@ input{
     position: absolute;
     top:40%;
     left: 50%;
-  }
-  
+}
+
+#uploadbutton{
+    color:white;
+}
