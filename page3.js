@@ -234,11 +234,23 @@ function idk(){
 }
  
 
-document.getElementById("insertButton").addEventListener("click", function() {
-  var popup = document.getElementById("popupNotification");
-  popup.style.display = "block";
+// document.getElementById("insertButton").addEventListener("click", function() {
+//   var popup = document.getElementById("popupNotification");
+//   popup.style.display = "block";
   
+//   setTimeout(function() {
+//     popup.style.display = "none";
+//   }, 3000); // Hide the notification after 3 seconds (3000 milliseconds)
+// });
+
+function showPopup() {
+  document.getElementById("popup").style.display = "block";
   setTimeout(function() {
-    popup.style.display = "none";
-  }, 3000); // Hide the notification after 3 seconds (3000 milliseconds)
-});
+    hidePopup();
+    }, 1000);
+}
+
+function hidePopup() {
+  document.getElementById("popup").style.display = "none";
+  popup.style.display = "none";
+}

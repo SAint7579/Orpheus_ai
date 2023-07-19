@@ -217,6 +217,7 @@ transition: all 0.3s ease;
     display: none;
 }
 
+
 .search_container{
     align-items: center;
 
@@ -379,3 +380,8 @@ input{
     left: 50%;
 }
 
+#slidertext{
+    background-color: transparent;
+    color: White;
+    text-align: center;
+}

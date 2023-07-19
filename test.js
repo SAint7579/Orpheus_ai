@@ -100,6 +100,48 @@ app.post('/insertintosongs', (req, res) => {
     });
 });
 
+const multer = require('multer');
+// const path = require('path');
+// const storage = multer.diskStorage({
+//   destination: 'uploads/',
+//   filename: function (req, file, cb) {
+//     const originalName = file.originalname;
+//     const newFileName = 'generate' + ".mp3";
+//     cb(null, newFileName);
+//   }
+// });
+// const upload = multer({ storage });
+
+// app.post('/upload', upload.single('fileToUpload'), (req, res) => {
+//   if (req.file) {
+//     console.log('File uploaded successfully.');
+//     res.send('File uploaded successfully.');
+//   } else {
+//     console.log('Error uploading the file.');
+//     res.send('Error uploading the file.');
+//   }
+// });
+
+const storage = multer.diskStorage({
+  destination: 'uploads/',
+  filename: function (req, file, cb) {
+    const originalName = file.originalname;
+    const newFileName = 'generate.mp3';
+    cb(null, newFileName);
+  }
+});
+
+const upload = multer({ storage });
+
+app.post('/upload', upload.single('fileToUpload'), (req, res) => {
+  if (req.file) {
+    console.log('File uploaded successfully.');
+    res.send('File uploaded successfully.');
+  } else {
+    console.log('Error uploading the file.');
+    res.send('Error uploading the file.');
+  }
+});
 
 
 

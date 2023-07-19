@@ -37,7 +37,7 @@
                 </li>
                 <li class="navbar__btn">
                     <a href="/" class="button">
-                    Sign up
+                    Log Out
                     </a>
                 </li>
             </ul>
@@ -51,7 +51,7 @@
             <div class="left_content">
 
                 <div class="btn_container1">
-                    <button class="btn"><a href="page3.html">Generate Randomly</a></button>
+                    <button class="btn" onclick="randomly()"><a href="page3.html" id="generate_randomly">Generate Randomly</a></button>
                 </div>
 
                 <div class="btn_container2">
@@ -59,85 +59,91 @@
                 </div>
 
                 <div class="btn_container3">
-                    <button class="btn"><a href="#">Upload it</a></button> 
+                    <!-- <button class="btn"><a href="#" id="upload_btn">Upload it</a></button> -->
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
+                        <button class="btn"><a href="#" id="upload_btn" >Upload it</a></button>
+                    </form>
                     <!-- <img src="/images/upload_icon.png" class="upload_icon"> -->
                 </div>
             </div>
 
             <div class="right_content", id="right_cnt">
-                <div class="search_container">
-                    <!-- <form role="search" id="form">
-                        <input type="search" id="query" name="q" placeholder="Search...">
+                <div class="select_songs_btn", id="select_songs_btn1">
+                    <div class="search_container">
+                        <!-- <form role="search" id="form">
+                            <input type="search" id="query" name="q" placeholder="Search...">
 
-                    </form> --> 
-                    <select class="custom" id="dropdown1" onchange="updateHeading(1)">
-                        <option >Song List 1</option>
-                        <option value="Anti-Hero">Anti-Hero</option>
-                        <option value="Blank-Space">Blank-Space</option>
-                        <option value="Back-To-December">Back-To-December</option>
-                        <option value="Lover">Lover</option>
-                        <option value="22">22</option>
-                        <option value="You-Belong-With-Me">You-Belong-With-Me</option>
-                        <option value="Love-Story">Love-Story</option>
-                        <option value="Cardigan">Cardigan</option>
-                        <option value="Willow">Willow</option>
-                        <option value="Delicate">Delicate</option>
-                      </select>
-                      <select class="custom" id="dropdown2" onchange="updateHeading(2)">
-                        <option >Song List 2 </option>
-                        <option value="Anti-Hero">Anti-Hero</option>
-                        <option value="Blank-Space">Blank-Space</option>
-                        <option value="Back-To-December">Back-To-December</option>
-                        <option value="Lover">Lover</option>
-                        <option value="22">22</option>
-                        <option value="You-Belong-With-Me">You-Belong-With-Me</option>
-                        <option value="Love-Story">Love-Story</option>
-                        <option value="Cardigan">Cardigan</option>
-                        <option value="Willow">Willow</option>
-                        <option value="Delicate">Delicate</option>
-                      </select>
-                      <select class="custom" id="dropdown3" onchange="updateHeading(3)">
-                        <option >Song List 3</option>
-                        <option value="Anti-Hero">Anti-Hero</option>
-                        <option value="Blank-Space">Blank-Space</option>
-                        <option value="Back-To-December">Back-To-December</option>
-                        <option value="Lover">Lover</option>
-                        <option value="22">22</option>
-                        <option value="You-Belong-With-Me">You-Belong-With-Me</option>
-                        <option value="Love-Story">Love-Story</option>
-                        <option value="Cardigan">Cardigan</option>
-                        <option value="Willow">Willow</option>
-                        <option value="Delicate">Delicate</option>
-                      </select>
+                        </form> --> 
+                        <select class="custom" id="dropdown1" onchange="updateHeading(1)">
+                            <option >Song List 1</option>
+                            <option value="Anti-Hero">Anti-Hero</option>
+                            <option value="Blank-Space">Blank-Space</option>
+                            <option value="Back-To-December">Back-To-December</option>
+                            <option value="Lover">Lover</option>
+                            <option value="22">22</option>
+                            <option value="You-Belong-With-Me">You-Belong-With-Me</option>
+                            <option value="Love-Story">Love-Story</option>
+                            <option value="Cardigan">Cardigan</option>
+                            <option value="Willow">Willow</option>
+                            <!-- <option value="Delicate">Delicate</option> -->
+                        </select>
+                        <select class="custom" id="dropdown2" onchange="updateHeading(2)">
+                            <option >Song List 2 </option>
+                            <option value="Anti-Hero">Anti-Hero</option>
+                            <option value="Blank-Space">Blank-Space</option>
+                            <option value="Back-To-December">Back-To-December</option>
+                            <option value="Lover">Lover</option>
+                            <option value="22">22</option>
+                            <option value="You-Belong-With-Me">You-Belong-With-Me</option>
+                            <option value="Love-Story">Love-Story</option>
+                            <option value="Cardigan">Cardigan</option>
+                            <option value="Willow">Willow</option>
+                            <!-- <option value="Delicate">Delicate</option> -->
+                        </select>
+                        <select class="custom" id="dropdown3" onchange="updateHeading(3)">
+                            <option >Song List 3</option>
+                            <option value="Anti-Hero">Anti-Hero</option>
+                            <option value="Blank-Space">Blank-Space</option>
+                            <option value="Back-To-December">Back-To-December</option>
+                            <option value="Lover">Lover</option>
+                            <option value="22">22</option>
+                            <option value="You-Belong-With-Me">You-Belong-With-Me</option>
+                            <option value="Love-Story">Love-Story</option>
+                            <option value="Cardigan">Cardigan</option>
+                            <option value="Willow">Willow</option>
+                            <!-- <option value="Delicate">Delicate</option> -->
+                        </select>
+                        
+                        
+                    </div>
+                    <br>
+                    <div class="card">
+                        <img src="images/dwane.jpg" class="thumbnail" id="thumbnail_song1" >
+                        <h3 class="song_name" id="heading1">select</h3>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <img src="images/dwane.jpg" class="thumbnail" id="thumbnail_song2">
+                        <h3 class="song_name" id="heading2">select</h3>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <img src="images/dwane.jpg" class="thumbnail" id="thumbnail_song3">
+                        <h3 class="song_name" id="heading3">select</h3>
+                    </div>
+                    <br>
+                    <div class="slider_container">
+                        <h3 id="slidertext">Select a Similarity Score</h3>
+                        <input type="range" id="slider" min="1" max="100" step="1" value="90">
+                        <p id="sliderValue">90</p>
+                    </div>
+                    <br>
+                    <div class="main__btn__container">
+                        <button class="main__btn" id="generate" onclick="changingSong()" ><a href="page3.html">Generate</a></button>
+                    </div>
                     
-                    
                 </div>
-                <br>
-                <div class="card">
-                    <img src="images/default.png" class="thumbnail" id="thumbnail_song1" >
-                    <h3 class="song_name" id="heading1">select</h3>
-                </div>
-                <br>
-                <div class="card">
-                    <img src="images/dwane.jpg" class="thumbnail" id="thumbnail_song2">
-                    <h3 class="song_name" id="heading2">select</h3>
-                </div>
-                <br>
-                <div class="card">
-                    <img src="images/ai.jpg" class="thumbnail" id="thumbnail_song3">
-                    <h3 class="song_name" id="heading3">select</h3>
-                </div>
-                <br>
-                <div class="slider_container">
-                    <input type="range" id="slider" min="1" max="100" step="1" value="90">
-                    <p id="sliderValue">90</p>
-                </div>
-                <br>
-                <div class="main__btn__container">
-                    <button class="main__btn" id="generate" onclick="changingSong()" ><a href="page3.html">Generate</a></button>
-                </div>
-
-                
             </div>
         </div>
 
