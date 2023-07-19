@@ -37,7 +37,7 @@
                 </li>
                 <li class="navbar__btn">
                     <a href="/" class="button">
-                    Sign up
+                    Log Out
                     </a>
                 </li>
             </ul>
@@ -76,7 +76,13 @@
                 <img src="images/empty_star.png" alt="" id="star5" onclick="rate(5)">
             </div>
             <div class="submit_card">
-                <button id="insertButton">Submit</button>
+                <button id="insertButton", onclick="showPopup()">Submit</button>
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <span class="close" onclick="hidePopup()">&times;</span>
+                        <h2>Submission successfull!</h2>
+                    </div>
+                </div>
                 <button id="downloadButton"><a href="audio/generated_song.mp3" class="disable-highlight" download>Download</a></button>
             </div>
             

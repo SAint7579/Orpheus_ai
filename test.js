@@ -54,10 +54,10 @@ app.get('/trigger-python', (req, res) => {
 
 
 app.post('/insert', (req, res) => {
-  const { value1, value2, value3, value4 } = req.body;
+  const { value1, value2, value3, value5 } = req.body;
 
   // Prepare the SQL statement with placeholders
-  const sql = 'INSERT INTO music (encoding, ratings, time_listened, songs) VALUES ($1, $2, $3, $4)';
+  const sql = 'INSERT INTO music (encoding, ratings, time_listened, input_song) VALUES ($1, $2, $3, $4)';
 
   let byteaValue4;
   // if (value4 !== undefined) {
@@ -67,7 +67,7 @@ app.post('/insert', (req, res) => {
   // }
 
   // Execute the SQL statement with parameters
-  client.query(sql, [value1, value2, value3, value4])
+  client.query(sql, [value1, value2, value3, value5])
     .then(() => {
       res.send('Data inserted successfully.');
     })
@@ -77,6 +77,71 @@ app.post('/insert', (req, res) => {
 });
 
 
+app.post('/insertintosongs', (req, res) => {
+  const { value1, value2, value3} = req.body;
+
+  // Prepare the SQL statement with placeholders
+  const sql = 'INSERT INTO songs (id, song, type) VALUES ($1, $2, $3)';
+
+  let byteaValue4;
+  // if (value4 !== undefined) {
+  //   // Convert value4 to bytea representation
+  //   byteaValue4 = Buffer.from(value4).toString('hex');
+  //   console.log(byteaValue4);
+  // }
+
+  // Execute the SQL statement with parameters
+  client.query(sql, [value1, value2, value3])
+    .then(() => {
+      res.send('Data inserted successfully.');
+    })
+    .catch((error) => {
+      res.status(500).send('Error inserting data: ' + error.message);
+    });
+});
+
+const multer = require('multer');
+// const path = require('path');
+// const storage = multer.diskStorage({
+//   destination: 'uploads/',
+//   filename: function (req, file, cb) {
+//     const originalName = file.originalname;
+//     const newFileName = 'generate' + ".mp3";
+//     cb(null, newFileName);
+//   }
+// });
+// const upload = multer({ storage });
+
+// app.post('/upload', upload.single('fileToUpload'), (req, res) => {
+//   if (req.file) {
+//     console.log('File uploaded successfully.');
+//     res.send('File uploaded successfully.');
+//   } else {
+//     console.log('Error uploading the file.');
+//     res.send('Error uploading the file.');
+//   }
+// });
+
+const storage = multer.diskStorage({
+  destination: 'uploads/',
+  filename: function (req, file, cb) {
+    const originalName = file.originalname;
+    const newFileName = 'generate.mp3';
+    cb(null, newFileName);
+  }
+});
+
+const upload = multer({ storage });
+
+app.post('/upload', upload.single('fileToUpload'), (req, res) => {
+  if (req.file) {
+    console.log('File uploaded successfully.');
+    res.send('File uploaded successfully.');
+  } else {
+    console.log('Error uploading the file.');
+    res.send('Error uploading the file.');
+  }
+});
 
 
 

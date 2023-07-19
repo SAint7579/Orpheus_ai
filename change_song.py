@@ -25,7 +25,8 @@ import IPython.display as ipd
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-audio_diffusion = AudioDiffusionPipeline.from_pretrained("teticio/latent-audio-diffusion-256").to(device)
+# audio_diffusion = AudioDiffusionPipeline.from_pretrained("teticio/latent-audio-diffusion-256").to(device)
+audio_diffusion = AudioDiffusionPipeline.from_pretrained("SAint7579/orpheus_ldm_model_v1-0").to(device)
 ddim = AudioDiffusionPipeline.from_pretrained("teticio/audio-diffusion-ddim-256").to(device)
 
 
@@ -240,19 +241,30 @@ def main():
     # song_array_1, sr = librosa.load("audio\output.mp3", sr=22050)
     # song_array_1 = song_array_1[:sr*5]
     
-    song_array_1, sr = librosa.load(f"input_songs/{song1_name}.mp3", sr=22050)
+    input_songs_array = []
+    
+    if song1_name != "None":
+        song_array_1, sr = librosa.load(f"input_songs/{song1_name}.mp3", sr=22050)
+        input_songs_array.append(song_array_1)
+    # song_array_1, sr = librosa.load(f"input_songs/{song1_name}.mp3", sr=22050)
     
     # song_array_1 = song_array_1[:sr*5]
+    if song2_name != "None":
+        song_array_2, sr = librosa.load(f"input_songs/{song2_name}.mp3", sr=22050)
+        input_songs_array.append(song_array_2)
     
-    song_array_2, sr = librosa.load(f"input_songs/{song2_name}.mp3", sr=22050)
+    # song_array_2, sr = librosa.load(f"input_songs/{song2_name}.mp3", sr=22050)
     # song_array_2 = song_array_2[:sr*5]
     
-    song_array_3, sr = librosa.load(f"input_songs/{song3_name}.mp3", sr=22050)
+    if song3_name != "None":
+        song_array_3, sr = librosa.load(f"input_songs/{song3_name}.mp3", sr=22050)
+        input_songs_array.append(song_array_3)
+    # song_array_3, sr = librosa.load(f"input_songs/{song3_name}.mp3", sr=22050)
     # song_array_3 = song_array_3[:sr*5]
-    
-    mage, audio = generate_songs([song_array_1], similarity=similarity_index, quality=200)
+    print("Input songs array is",input_songs_array)
+    mage, audio = generate_songs(input_songs_array, similarity=similarity_index, quality=200)
     mage.save("audio/thumbnail.png")
-    audioarray_to_mp3(audio,"audio/generated_song.mp3")
+    audioarray_to_mp3_highdb(audio,"audio/generated_song.mp3")
     # if i==3:
     #     shutil.copy2("aidio/nvg.mp3", "audio/generated_song.mp3")
     
