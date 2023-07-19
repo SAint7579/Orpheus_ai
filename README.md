@@ -9,10 +9,12 @@ Music generation solutions mostly rely on text descriptions and are based on har
 - Dataset: https://huggingface.co/datasets/SAint7579/orpheus_samples
 
 ## Technology Stack
-<b> User Interface </b>
-- 
--
--
+
+<b> User Interface + DB </b>
+- HTML5 + CSS3 + JavaScript
+- NodeJS
+- PostGre SQL
+
 <b> Music Generation </b>
 - Python (3.6+)
 - PyTorch
