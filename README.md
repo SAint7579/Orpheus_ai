@@ -1,4 +1,4 @@
-<img src="https://github.com/SAint7579/Orpheus_ai/blob/main/images/orph.png" alt="Alt Text" width="200" height="200"></img>
+<img src="images/orph.png" alt="Alt Text" width="200" height="200"></img>
 # Orpheus.ai - Improving AI music generation with the opinions of the listeners
 
 ## Overview:
