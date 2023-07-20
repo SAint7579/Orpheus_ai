@@ -1,0 +1,3 @@
+[submodule "Retraining Pipeline/audio-diffusion"]
+	path = Retraining Pipeline/audio-diffusion
+	url = https://github.com/SAint7579/audio-diffusion
