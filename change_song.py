@@ -261,7 +261,6 @@ def main():
         input_songs_array.append(song_array_3)
     # song_array_3, sr = librosa.load(f"input_songs/{song3_name}.mp3", sr=22050)
     # song_array_3 = song_array_3[:sr*5]
-    print("Input songs array is",input_songs_array)
     mage, audio = generate_songs(input_songs_array, similarity=similarity_index, quality=200)
     mage.save("audio/thumbnail.png")
     audioarray_to_mp3_highdb(audio,"audio/generated_song.mp3")

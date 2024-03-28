@@ -254,3 +254,8 @@ function hidePopup() {
   document.getElementById("popup").style.display = "none";
   popup.style.display = "none";
 }
+
+document.getElementById('backButton').addEventListener('click', function() {
+  window.location.href = 'page2.html'; // Redirect the window to page2.html
+});
+

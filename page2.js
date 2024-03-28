@@ -54,31 +54,10 @@ function randomly(){
 
 
 
-document.getElementById('upload_btn').addEventListener('click', function(event) {
-  event.preventDefault(); // Prevent default button click behavior
-  document.getElementById('fileToUpload').click(); // Trigger the file input click event
-});
-
-document.getElementById('uploadForm').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent the default form submission behavior
-
-  var formData = new FormData(this);
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:3000/upload', true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        console.log(xhr.responseText);
-        // Handle the response from the server here
-      } else {
-        console.error('Error:', xhr.status);
-        // Handle any errors that occurred during the request
-      }
-    }
-  };
-  xhr.send(formData);
-});
+// document.getElementById('upload_btn').addEventListener('click', function(event) {
+//   event.preventDefault(); // Prevent default button click behavior
+//   document.getElementById('fileToUpload').click(); // Trigger the file input click event
+// });
 
 // document.getElementById('uploadForm').addEventListener('submit', function(event) {
 //   event.preventDefault(); // Prevent the default form submission behavior
@@ -88,13 +67,62 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
 //   var xhr = new XMLHttpRequest();
 //   xhr.open('POST', 'http://localhost:3000/upload', true);
 //   xhr.onreadystatechange = function() {
-//     if (xhr.readyState === 4 && xhr.status === 200) {
-//       console.log(xhr.responseText);
-//       // Handle the response from the server here
-//     } else if (xhr.readyState === 4 && xhr.status !== 200) {
-//       console.error('Error:', xhr.status);
-//       // Handle any errors that occurred during the request
+//     if (xhr.readyState === 4) {
+//       if (xhr.status === 200) {
+//         console.log(xhr.responseText);
+//         // Handle the response from the server here
+//       } else {
+//         console.error('Error:', xhr.status);
+//         // Handle any errors that occurred during the request
+//       }
 //     }
 //   };
 //   xhr.send(formData);
 // });
+
+document.getElementById('upload_btn').addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default button click behavior
+  document.getElementById('fileToUpload').click(); // Trigger the file input click event
+});
+
+document.getElementById('fileToUpload').addEventListener('change', function(event) {
+  uploadFile();
+});
+
+function uploadFile() {
+  var fileInput = document.getElementById('fileToUpload');
+  var file = fileInput.files[0];
+
+  if (file) {
+    var formData = new FormData();
+    formData.append('fileToUpload', file);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:3000/upload', true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText);
+          uploading_song();
+          window.location.href = 'page3.html'; // Call the changingSong() function after successful upload
+        } else {
+          console.error('Error:', xhr.status);
+          // Handle any errors that occurred during the request
+        }
+      }
+    };
+    xhr.send(formData);
+  }
+}
+
+function uploading_song() {
+  // Implement your logic for changing the song here
+  localStorage.setItem("song1", "uploaded_song");
+  localStorage.setItem("loadingSong", "firstsong");
+}
+
+document.getElementById('uploadForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+  uploadFile();
+});
+

@@ -123,10 +123,10 @@ const multer = require('multer');
 // });
 
 const storage = multer.diskStorage({
-  destination: 'uploads/',
+  destination: 'input_songs/',
   filename: function (req, file, cb) {
     const originalName = file.originalname;
-    const newFileName = 'generate.mp3';
+    const newFileName = 'uploaded_song.mp3';
     cb(null, newFileName);
   }
 });
@@ -142,6 +142,8 @@ app.post('/upload', upload.single('fileToUpload'), (req, res) => {
     res.send('Error uploading the file.');
   }
 });
+
+
 
 
 

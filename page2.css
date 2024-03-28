@@ -305,6 +305,7 @@ input{
     /* position: relative; */
     align-items: center;
     text-align: center;
+    /* align-self: center; */
 
 
 }
@@ -322,6 +323,8 @@ input{
     transition: all 0.35s;
     outline: none;
     font-weight: bold;
+    align-items: center;
+    align-content: center;
     
 }
 
