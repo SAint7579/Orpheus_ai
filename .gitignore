@@ -6,3 +6,10 @@ node_modules/
 Retraining Pipeline/models
 Retraining Pipeline/audio-diffusion
 Enhancement/
+ui/*.wav
+ui/*.npy
+
+input_songs/
+uploads/
+audio/
+__pycache__/
